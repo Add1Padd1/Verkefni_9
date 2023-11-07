@@ -7,7 +7,17 @@ import { renderDetails, renderFrontpage, searchAndRender } from './lib/ui.js';
  * @returns {Promise<void>}
  */
 async function onSearch(e) {
-  /* TODO útfæra */
+  e.preventDefault();
+  if (!e.target || !(e.target instanceof Element)) {
+    return;
+  }
+  const { value } = e.target.querySelector('input') ?? {};
+  if (!value) {
+    return;
+  }
+  await searchAndRender(document.body, e.target, value);
+  window.history.pushState({}, '', `/?query=${value}`);
+  // Laga þetta það er ekki að virka, setur ekki það sem er leitað að í slóð síðunnar
 }
 
 /**
@@ -16,6 +26,20 @@ async function onSearch(e) {
  * leitarniðurstöðum ef `query` er gefið.
  */
 function route() {
+  const { search } = window.location;
+
+  const qs = new URLSearchParams(search);
+
+  const query = qs.get('query') ?? undefined;
+  const id = qs.get('id');
+
+  const parentElement = document.body;
+
+  if (id) {
+    renderDetails(parentElement, id);
+  } else {
+    renderFrontpage(parentElement, onSearch, query);
+  }
   /* TODO athuga hvaða síðu á að birta og birta */
 }
 
