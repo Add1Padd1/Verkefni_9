@@ -8,16 +8,19 @@ import { renderDetails, renderFrontpage, searchAndRender } from './lib/ui.js';
  */
 async function onSearch(e) {
   e.preventDefault();
+
   if (!e.target || !(e.target instanceof Element)) {
     return;
   }
+
   const { value } = e.target.querySelector('input') ?? {};
+
   if (!value) {
     return;
   }
+
   await searchAndRender(document.body, e.target, value);
   window.history.pushState({}, '', `/?query=${value}`);
-  // Laga þetta það er ekki að virka, setur ekki það sem er leitað að í slóð síðunnar
 }
 
 /**

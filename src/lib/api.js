@@ -62,7 +62,6 @@ export async function searchLaunches(query) {
   }
 
   return json.results;
-  /* TODO útfæra */
 }
 
 /**
