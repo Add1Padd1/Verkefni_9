@@ -22,7 +22,6 @@ async function onSearch(e) {
   await searchAndRender(document.body, e.target, value);
   window.history.pushState({}, '', `/?query=${value}`);
 }
-
 /**
  * Athugar hvaða síðu við erum á út frá query-string og birtir.
  * Ef `id` er gefið er stakt geimskot birt, annars er forsíða birt með
