@@ -96,13 +96,12 @@ function createSearchResults(results, query) {
     const resultElement = el(
       'li',
       { class: 'result' },
-      el('span', { class: 'name' }, result.name),
+      el('a', { href: `/?id=${result.id}` }, result.name),
       el('span', { class: 'mission' }, result.mission)
     );
 
     list.appendChild(resultElement);
   }
-
   return list;
   /* TODO útfæra */
 }
