@@ -96,13 +96,12 @@ function createSearchResults(results, query) {
     const resultElement = el(
       'li',
       { class: 'result' },
-      el('span', { class: 'name' }, result.name),
+      el('a', { href: `/?id=${result.id}` }, result.name),
       el('span', { class: 'mission' }, result.mission)
     );
 
     list.appendChild(resultElement);
   }
-
   return list;
   /* TODO útfæra */
 }
@@ -178,12 +177,12 @@ export async function renderDetails(parentElement, id) {
   );
 
   parentElement.appendChild(container);
-
   /* TODO setja loading state og sækja gögn */
 
   // Tómt og villu state, við gerum ekki greinarmun á þessu tvennu, ef við
   // myndum vilja gera það þyrftum við að skilgreina stöðu fyrir niðurstöðu
   if (!result) {
+    console.warn('fann ekki niðurstöður');
     /* TODO útfæra villu og tómt state */
   }
 

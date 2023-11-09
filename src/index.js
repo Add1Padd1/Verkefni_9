@@ -47,6 +47,9 @@ function route() {
 
 // Bregst við því þegar við notum vafra til að fara til baka eða áfram.
 window.onpopstate = () => {
+  window.addEventListener('popstate', e =>{
+    console.log('pop');
+  })
   /* TODO bregðast við */
 };
 
