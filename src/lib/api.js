@@ -98,3 +98,4 @@ export async function getLaunch(id) {
   return json;
   /* TODO útfæra */
 }
+console.log(getLaunch());
