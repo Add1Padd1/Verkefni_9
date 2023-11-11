@@ -93,11 +93,12 @@ function createSearchResults(results, query) {
   }
 
   for (const result of results) {
+    const resultMission = result.mission;
     const resultElement = el(
       'li',
       { class: 'result' },
       el('a', { href: `/?id=${result.id}` }, result.name),
-      el('span', { class: 'mission' }, result.mission)
+      el('span', { class: 'mission' }, `Geimferð: ${ resultMission }`)
     );
 
     list.appendChild(resultElement);
@@ -180,13 +181,9 @@ export async function renderDetails(parentElement, id) {
   /* TODO setja loading state og sækja gögn */
 
 
-  // Eitthvað svona held ég...
-
-  // setLoading(mainElement, searchForm);
-  // const results = await searchLaunches(query);
-  // setNotLoading(mainElement, searchForm);
-
+  
   const launchJSON = await (getLaunch(id));
+  
   const windowStart = launchJSON?.window_start;
   const windowEnd = launchJSON?.window_end;
   const statusName = launchJSON?.status.name;
@@ -199,7 +196,7 @@ export async function renderDetails(parentElement, id) {
   // Sækja gögn og birta þau á skjáinn...
   const launchList = el('ul', { class: 'launchList' });
   container.appendChild(launchList);
-  const launchListNameForm = el('li', { class: 'feitletrad' }, `${ launchListName }`);
+  const launchListNameForm = el('h1', { class: 'feitletrad' }, `${ launchListName }`);
   launchList.appendChild(launchListNameForm);
   const windowStartForm = el('li', { class: 'windowStart' }, `Gluggi opnast: ${ windowStart }`);
   launchList.appendChild(windowStartForm);
@@ -214,26 +211,21 @@ export async function renderDetails(parentElement, id) {
 
   const missionNameForm = el('li', { class: 'feitletrad' }, `Geimferð: ${ missionName }`);
   launchList.appendChild(missionNameForm);
-  const mDescriptionForm = el('li', { class: 'mDescription' }, `${ mDescription }`);
+  const mDescriptionForm = el('li', { class: 'marginBottom' }, `${ mDescription }`);
   launchList.appendChild(mDescriptionForm);
 
-  const launchListImageForm = el('li', { src: 'launchListImage' }, `${ launchListImage }`);
+  const launchListImageForm = el('img', { src: `${ launchListImage }`, alt: '' });
   launchList.appendChild(launchListImageForm);
 
   
 
   container.appendChild(backElement);
-  
-  // const detailsElement = el('span', { class: 'mission' }, result.mission)
 
 
 
   // Tómt og villu state, við gerum ekki greinarmun á þessu tvennu, ef við
   // myndum vilja gera það þyrftum við að skilgreina stöðu fyrir niðurstöðu
-  if (!result) {
-    console.warn('fann ekki niðurstöður');
-    /* TODO útfæra villu og tómt state */
-  }
+ 
 
   /* TODO útfæra ef gögn */
 }

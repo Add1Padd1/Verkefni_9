@@ -46,12 +46,12 @@ function route() {
 }
 
 // Bregst við því þegar við notum vafra til að fara til baka eða áfram.
-window.onpopstate = () => {
-  window.addEventListener('popstate', e =>{
-    console.log('pop');
-  })
-  /* TODO bregðast við */
-};
-
+window.addEventListener('popstate', (event) => {
+  if (event){
+    empty(document.body)
+    route();
+  }
+  
+});
 // Athugum í byrjun hvað eigi að birta.
 route();
