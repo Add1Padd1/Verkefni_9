@@ -63,4 +63,26 @@ main {
   max-width: var(--max-width);
 }
 
+.result{
+  list-style: none;
+  font-size: large;
+
+}
+.mission {
+  font-family: sans-serif;
+  margin: 1em;
+}
+
 /* TODO nánari stílar */
+.launchList{
+  list-style: none;
+}
+.feitletrad{
+  font-weight: 700;
+  font-size: large;
+}
+
+
+.marginBottom{
+  margin-bottom: 1em;
+}

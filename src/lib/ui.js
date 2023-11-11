@@ -179,6 +179,55 @@ export async function renderDetails(parentElement, id) {
   parentElement.appendChild(container);
   /* TODO setja loading state og sækja gögn */
 
+
+  // Eitthvað svona held ég...
+
+  // setLoading(mainElement, searchForm);
+  // const results = await searchLaunches(query);
+  // setNotLoading(mainElement, searchForm);
+
+  const launchJSON = await (getLaunch(id));
+  const windowStart = launchJSON?.window_start;
+  const windowEnd = launchJSON?.window_end;
+  const statusName = launchJSON?.status.name;
+  const missionName = launchJSON?.mission.name;
+  const launchListName = launchJSON?.name;
+  const statDescription = launchJSON?.status.description;
+  const mDescription = launchJSON?.mission.description;
+  const launchListImage = launchJSON?.image;
+  
+  // Sækja gögn og birta þau á skjáinn...
+  const launchList = el('ul', { class: 'launchList' });
+  container.appendChild(launchList);
+  const launchListNameForm = el('li', { class: 'feitletrad' }, `${ launchListName }`);
+  launchList.appendChild(launchListNameForm);
+  const windowStartForm = el('li', { class: 'windowStart' }, `Gluggi opnast: ${ windowStart }`);
+  launchList.appendChild(windowStartForm);
+  const windowEndForm = el('li', { class: 'marginBottom' }, `Gluggi lokast: ${ windowEnd }`);
+  launchList.appendChild(windowEndForm);
+
+
+  const statusNameForm = el('li', { class: 'feitletrad' }, `Staða: ${ statusName }`);
+  launchList.appendChild(statusNameForm);
+  const statDescriptionForm = el('li', { class: 'marginBottom' }, `${ statDescription }`);
+  launchList.appendChild(statDescriptionForm);
+
+  const missionNameForm = el('li', { class: 'feitletrad' }, `Geimferð: ${ missionName }`);
+  launchList.appendChild(missionNameForm);
+  const mDescriptionForm = el('li', { class: 'mDescription' }, `${ mDescription }`);
+  launchList.appendChild(mDescriptionForm);
+
+  const launchListImageForm = el('li', { src: 'launchListImage' }, `${ launchListImage }`);
+  launchList.appendChild(launchListImageForm);
+
+  
+
+  container.appendChild(backElement);
+  
+  // const detailsElement = el('span', { class: 'mission' }, result.mission)
+
+
+
   // Tómt og villu state, við gerum ekki greinarmun á þessu tvennu, ef við
   // myndum vilja gera það þyrftum við að skilgreina stöðu fyrir niðurstöðu
   if (!result) {
